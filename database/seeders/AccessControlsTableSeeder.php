@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Merchant;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
@@ -189,7 +188,7 @@ class AccessControlsTableSeeder extends Seeder
             ['name' => 'expense-head-show', 'guard_name' => 'admin', 'group_name' => 'expense-head'],
             ['name' => 'expense-head-edit', 'guard_name' => 'admin', 'group_name' => 'expense-head'],
             ['name' => 'expense-head-delete', 'guard_name' => 'admin', 'group_name' => 'expense-head'],
-            
+
             ['name' => 'expense-list', 'guard_name' => 'admin', 'group_name' => 'expense'],
             ['name' => 'expense-create', 'guard_name' => 'admin', 'group_name' => 'expense'],
             ['name' => 'expense-show', 'guard_name' => 'admin', 'group_name' => 'expense'],

@@ -7,18 +7,6 @@ Users List
 <link rel="stylesheet" href="{{ asset('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
 @endsection
 @section('content')
-<!-- Content Header (Page header) -->
-
-<section class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-1">
-
-        </div>
-    </div><!-- /.container-fluid -->
-</section>
-
-<!-- Main content -->
-<section class="content">
     <div class="container-fluid">
 
         <div class="row">
@@ -27,7 +15,7 @@ Users List
                     <div class="card-header">
                         <h3 class="card-title" style="color:#115548; font-weight: bold;">User List</h3>
                         <div class="card-tools">
-                            <a class="btn btn-sm active-color" href="{{route('user.users.create')}}">&nbsp;Add User</a>
+                        <a href="{{route('user.users.create')}}"><button class="btn btn-sm btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;Add Users</button></a>
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -37,8 +25,7 @@ Users List
                                 <tr style="background-color: #E4E4E4;">
                                     <th>#</th>
                                     <th>Name</th>
-                                    {{-- <th>Email</th>--}}
-                                    <th>User Id</th>
+                                    <th>Email</th>
                                     <th> Role</th>
                                     <th>Action</th>
                                 </tr>
@@ -57,15 +44,7 @@ Users List
                                         @endif
                                     </td>
                                     <td>
-                                        @can('User Edit')
                                         <div class="btn-group">
-                                            {{-- <a href="{{ route('user.users.edit', $row) }}
-                                            <i class="fa fa-pen"></i> </a>
-                                            <a href="{{ route('user.users.edit', $row) }}
-                                                               <i class=" fa fa-trash"></i> </a>
-                                            --}}
-
-
                                             <form method="POST" action="{{ route('user.users.destroy',$row->id)}}" class="d-inline">
                                                 @csrf
                                                 @method('delete')
@@ -75,7 +54,6 @@ Users List
                                                     <i class="fa fa-trash"></i> Delete</button>
                                             </form>
                                         </div>
-                                        @endcan
                                     </td>
                                 </tr>
                                 @endforeach
@@ -91,12 +69,7 @@ Users List
         <!-- /.row -->
 
     </div><!-- /.container-fluid -->
-</section>
-<!-- /.content -->
 @endsection
-
-
-
 @section('script')
 <!-- DataTables -->
 <script src="{{ asset('admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>

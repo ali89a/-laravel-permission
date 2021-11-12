@@ -131,14 +131,9 @@
             <i class="flag-icon flag-icon-us mr-2"></i> English
           </a>
           <a href="#" class="dropdown-item">
-            <i class="flag-icon flag-icon-de mr-2"></i> German
+            <i class="flag-icon flag-icon-bd mr-2"></i> Bangla
           </a>
-          <a href="#" class="dropdown-item">
-            <i class="flag-icon flag-icon-fr mr-2"></i> French
-          </a>
-          <a href="#" class="dropdown-item">
-            <i class="flag-icon flag-icon-es mr-2"></i> Spanish
-          </a>
+       
         </div>
       </li>
       <li class="nav-item">

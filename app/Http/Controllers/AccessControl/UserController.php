@@ -130,7 +130,7 @@ class UserController extends Controller
         //     abort(403, 'Unauthorized action.');
         // }
 
-        //$user->delete();
+        $user->delete();
         return back();
 
     }

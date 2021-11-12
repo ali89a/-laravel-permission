@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AccessControl;
 
 use DB;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
@@ -34,9 +35,9 @@ class RoleController extends Controller
     {
         $data = [
             'model' => new Role,
-            'permission' => Permission::all(),
+            'all_permissions' => Permission::all(),
+            'permission_groups' =>  User::getpermissionGroups(),
         ];
-
         return view($this->path('create'), $data);
     }
 
@@ -76,15 +77,16 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit($id)
     {
         $data = [
-            'model' => $role,  'permission' => Permission::all(),  'rolePermissions' => DB::table("role_has_permissions")->where("role_has_permissions.role_id", $role->id)
-                ->pluck('role_has_permissions.permission_id', 'role_has_permissions.permission_id')
-                ->all(),
+           
+            'role' => Role::find($id),
+            'all_permissions' => Permission::all(),
+            'permission_groups' => User::getpermissionGroups(),
+           
 
         ];
-
         return view($this->path('edit'), $data);
     }
 
@@ -101,12 +103,15 @@ class RoleController extends Controller
             'name' => 'required|unique:roles,name,' . $role->id
         ]);
 
-        $role->fill($request->all());
-        $role->update();
-        $role->syncPermissions($request->input('permission'));
+        $permissions = $request->input('permissions');
+        if (!empty($permissions)) {
+            $role->name = $request->name;
+            $role->save();
+            $role->syncPermissions($permissions);
+        }
 
-        Toastr::success('Role Information crated Successfully!.', '', ["progressbar" => true]);
-        return redirect()->route('role.index');
+        Toastr::success('Role Information Update Successfully!.', '', ["progressbar" => true]);
+        return redirect()->route('user.roles.index');
     }
 
     /**
